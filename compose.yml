@@ -1,11 +1,6 @@
 volumes:
   dvwa:
 
-
-networks:
-  dvwa:
-
-
 services:
   dvwa:
     build: .
@@ -16,10 +11,8 @@ services:
       - DB_SERVER=db
     depends_on:
       - db
-    networks:
-      - dvwa
     ports:
-      - 127.0.0.1:4280:80
+      - 4280:80
     restart: unless-stopped
 
   db:
@@ -31,6 +24,4 @@ services:
       - MYSQL_PASSWORD=p@ssw0rd
     volumes:
       - dvwa:/var/lib/mysql
-    networks:
-      - dvwa
     restart: unless-stopped
